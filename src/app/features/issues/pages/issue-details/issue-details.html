@@ -1,0 +1,66 @@
+<div class="issue-details">
+  @if (issue()) {
+    <div class="issue-card">
+      <h2 class="issue-title">
+        {{ issue()!.title }}
+      </h2>
+
+      <p class="issue-description">
+        {{ issue()!.description }}
+      </p>
+
+      <div class="issue-meta">
+        <div class="meta-item">
+          <strong>Category:</strong>
+          {{ issue()!.category }}
+        </div>
+
+        <div class="meta-item">
+          <strong>Priority:</strong>
+          <span class="badge badge--{{ issue()!.priority }}">
+            {{ issue()!.priority }}
+          </span>
+        </div>
+
+        <div class="meta-item">
+          <strong>Status:</strong>
+          <span class="badge badge--{{ issue()!.status }}">
+            {{ issue()!.status }}
+          </span>
+        </div>
+
+        <div class="meta-item">
+          <strong>Assigned To:</strong>
+          {{ issue()!.assignedTo }}
+        </div>
+
+        <div class="meta-item">
+          <strong>Created:</strong>
+          {{ formatDate(issue()!.createdAt) }}
+        </div>
+
+        <div class="meta-item">
+          <strong>Due Date:</strong>
+          {{ formatDate(issue()!.dueDate) }}
+        </div>
+
+        @if (issue()!.resolvedAt) {
+          <div class="meta-item">
+            <strong>Resolved:</strong>
+            {{ formatDate(issue()!.resolvedAt!) }}
+          </div>
+        }
+      </div>
+
+      <!-- actions -->
+      <div class="issue-actions">
+        <button class="btn btn-edit" (click)="editIssue()">Edit Issue</button>
+
+        <button class="btn btn-delete" (click)="deleteIssue()">Delete Issue</button>
+      </div>
+    </div>
+
+  } @else {
+    <p class="issue-not-found">Issue not found.</p>
+  }
+</div>

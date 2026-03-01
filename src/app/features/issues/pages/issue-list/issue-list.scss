@@ -1,0 +1,119 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.issue-page {
+  padding: v.$space-8;
+  min-height: 100%;
+  background: var(--clr-surface-page);
+  animation: bx-fade-up 0.3s ease both;
+
+  @include m.respond-below(md) {
+    padding: v.$space-4;
+  }
+
+  // Page heading
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-2xl;
+    font-weight: v.$font-weight-extrabold;
+    letter-spacing: v.$letter-spacing-tight;
+    color: var(--clr-text-primary);
+    margin-bottom: v.$space-6;
+    padding-bottom: v.$space-4;
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  // Empty state when no issues match
+  &__empty {
+    @include m.flex-column-center;
+    gap: v.$space-4;
+    padding: v.$space-12 0;
+    color: var(--clr-text-muted);
+
+    i {
+      font-size: 48px;
+      opacity: 0.4;
+    }
+
+    p {
+      font-size: v.$font-size-sm;
+      font-weight: v.$font-weight-medium;
+    }
+  }
+}
+
+// ---Filter Bar -----
+.filters {
+  display: flex;
+  align-items: center;
+  gap: v.$space-3;
+  flex-wrap: wrap;
+  margin-bottom: v.$space-6;
+  padding: v.$space-4 v.$space-5;
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-lg;
+  box-shadow: var(--shadow-card);
+
+  @include m.respond-below(md) {
+    padding: v.$space-3;
+    gap: v.$space-2;
+  }
+
+  // Search input
+  &__search {
+    @include m.input-base;
+    min-width: 180px;
+    flex: 1;
+    max-width: 280px;
+  }
+
+  // Status / Priority dropdowns
+  &__select {
+    @include m.input-base;
+    cursor: pointer;
+    min-width: 130px;
+  }
+
+  // Thin vertical divider between filter controls and view toggles
+  &__divider {
+    width: 1px;
+    height: 28px;
+    background: var(--clr-border-subtle);
+    flex-shrink: 0;
+
+    @include m.respond-below(md) {
+      display: none;
+    }
+  }
+
+  // "New Issue" button
+  &__create {
+    margin-left: auto; // pushes to the far right
+
+    @include m.respond-below(md) {
+      margin-left: 0;
+    }
+  }
+}
+
+// ---Table & kanban Btn ---
+// These come from _button.scss (.action-btn), so only icon-btn
+// overrides and the .active state are defined here.
+.action-btn.icon-btn {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  @include m.flex-center;
+  flex-shrink: 0;
+
+  // Active view button gets a teal highlight
+  &.active {
+    background: rgba(0, 191, 166, 0.1);
+    border-color: var(--clr-teal-500);
+
+    i {
+      color: var(--clr-teal-500);
+    }
+  }
+}

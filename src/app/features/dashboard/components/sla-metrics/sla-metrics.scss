@@ -1,0 +1,84 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.sla-metrics {
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-lg;
+  padding: v.$space-6;
+  box-shadow: var(--shadow-card);
+
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-xl;
+    font-weight: v.$font-weight-bold;
+    color: var(--clr-text-primary);
+    margin: 0 0 v.$space-6 0;
+  }
+
+  &__grid {
+    @include m.flex-column;
+    gap: v.$space-5;
+  }
+}
+
+.sla-metric {
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: v.$space-2;
+  }
+
+  &__label {
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-semibold;
+    color: var(--clr-text-secondary);
+  }
+
+  &__value {
+    font-family: v.$font-display;
+    font-size: v.$font-size-lg;
+    font-weight: v.$font-weight-bold;
+    color: var(--clr-text-primary);
+  }
+
+   &__target {
+    font-size: v.$font-size-xs;
+    color: var(--clr-text-muted);
+    margin: 0 0 v.$space-2 0;
+  }
+
+  &__progress {
+    height: 8px;
+    background: var(--clr-surface-hover);
+    border-radius: v.$radius-pill;
+    overflow: hidden;
+    margin-bottom: v.$space-1;
+  }
+
+   &__progress-fill {
+    height: 100%;
+    border-radius: v.$radius-pill;
+    transition: width 0.6s ease;
+  }
+
+  &__percentage {
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-semibold;
+    color: var(--clr-text-secondary);
+  }
+
+  // Status colors
+  &--good &__progress-fill {
+    background: var(--clr-teal-500);
+  }
+
+  &--warning &__progress-fill {
+    background: #FFB84D;
+  }
+
+  &--critical &__progress-fill {
+    background: #FF5C7A;
+  }
+}

@@ -1,0 +1,215 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.issue-details {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: v.$space-8;
+  animation: bx-fade-up 0.35s ease both;
+
+  @include m.respond-below(md) {
+    padding: v.$space-4;
+  }
+}
+
+// --- Detail Card -----------
+.issue-card {
+  position: relative;
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-xl;
+  padding: v.$space-8;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+
+  // Teal top accent line — same signature as the login card
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--clr-teal-600), var(--clr-teal-400));
+  }
+
+  @include m.respond-below(md) {
+    padding: v.$space-5 v.$space-4;
+  }
+}
+
+// ----- Issue Title -----------
+.issue-title {
+  font-family: v.$font-display;
+  font-size: v.$font-size-2xl;
+  font-weight: v.$font-weight-extrabold;
+  letter-spacing: v.$letter-spacing-tight;
+  color: var(--clr-text-primary);
+  margin: v.$space-2 0 v.$space-4;
+  padding-bottom: v.$space-4;
+  border-bottom: 1px solid var(--clr-border-subtle);
+}
+
+// --- Description paragraph---------
+.issue-description {
+  font-size: v.$font-size-sm;
+  color: var(--clr-text-secondary);
+  line-height: v.$line-height-normal;
+  margin-bottom: v.$space-6;
+}
+
+// ---- Metadata Grid -------
+// Responsive auto-fit grid
+.issue-meta {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: v.$space-4;
+  padding: v.$space-5;
+  background: var(--clr-surface-hover);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-lg;
+  margin-bottom: v.$space-8;
+}
+
+// Individual metadata field
+.meta-item {
+  @include m.flex-column;
+  gap: v.$space-1;
+
+  // FIELD LABEL — small caps
+  strong {
+    display: block;
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: v.$letter-spacing-caps;
+    color: var(--clr-text-secondary);
+    margin-bottom: 2px;
+  }
+
+  // FIELD VALUE
+  font-size: v.$font-size-sm;
+  color: var(--clr-text-primary);
+  font-weight: v.$font-weight-medium;
+}
+
+// ---- Status / Priority Badges -----
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px v.$space-3;
+  border-radius: v.$radius-pill;
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+  white-space: nowrap;
+
+  // ---Priority----
+  &--low {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--clr-teal-500);
+    border-color: rgba(0, 191, 166, 0.25);
+  }
+
+  &--medium {
+    background: rgba(255, 184, 77, 0.1);
+    color: #c87d00;
+    border-color: rgba(255, 184, 77, 0.3);
+  }
+
+  &--high {
+    background: rgba(255, 92, 122, 0.1);
+    color: #ff5c7a;
+    border-color: rgba(255, 92, 122, 0.25);
+  }
+
+  // Status
+  &--open {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.25);
+  }
+
+  &--in-progress {
+    background: rgba(255, 184, 77, 0.1);
+    color: #c87d00;
+    border-color: rgba(255, 184, 77, 0.3);
+  }
+
+  &--resolved {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--clr-teal-500);
+    border-color: rgba(0, 191, 166, 0.25);
+  }
+}
+
+// Action Buttons Row -----------
+.issue-actions {
+  display: flex;
+  gap: v.$space-4;
+  flex-wrap: wrap;
+}
+
+// Shared base for both action buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-6;
+  border-radius: v.$radius-md;
+  font-family: v.$font-body;
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-semibold;
+  letter-spacing: v.$letter-spacing-wide;
+  cursor: pointer;
+  transition:
+    background v.$transition-base,
+    box-shadow v.$transition-base,
+    transform v.$transition-spring;
+  border: none;
+
+  @include m.focus-ring;
+
+  &:hover {
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+
+  // ---- Edit Button ----------
+  &-edit {
+    background: linear-gradient(135deg, var(--clr-teal-500) 0%, var(--clr-teal-400) 100%);
+    color: var(--clr-text-on-teal);
+    box-shadow: var(--shadow-btn);
+
+    &:hover {
+      background: linear-gradient(135deg, var(--clr-teal-600) 0%, var(--clr-teal-500) 100%);
+      box-shadow: var(--shadow-btn-hover);
+    }
+  }
+
+  // --- Delete Button -------------
+  &-delete {
+    background: rgba(255, 92, 122, 0.08);
+    color: #ff5c7a;
+    border: 1.5px solid rgba(255, 92, 122, 0.3);
+
+    &:hover {
+      background: rgba(255, 92, 122, 0.15);
+      border-color: rgba(255, 92, 122, 0.5);
+    }
+  }
+}
+
+// ------ Not Found Message ----------
+.issue-not-found {
+  text-align: center;
+  color: var(--clr-text-secondary);
+  font-size: v.$font-size-lg;
+  padding: v.$space-12;
+  opacity: 0.7;
+}

@@ -1,0 +1,101 @@
+<div class="issue-page">
+  <h2 class="issue-page__title">Issue Management</h2>
+
+  <div class="filters" role="search" aria-label="Filter issues">
+    <!-- SEARCH -->
+    <input
+      type="text"
+      class="filters__search"
+      placeholder="Search issue..."
+      aria-label="Search issues by title or category"
+      (input)="search.set($any($event.target).value)"
+    />
+
+    <!-----STATUS FILTER ----------->
+    <!-- STATUS FILTER -->
+    <select
+      class="filters__select"
+      aria-label="Filter by status"
+      (change)="filterStatus.set($any($event.target).value)"
+    >
+      <option value="all">All Status</option>
+      <option value="open">Open</option>
+      <option value="in-progress">In Progress</option>
+      <option value="resolved">Resolved</option>
+    </select>
+    <!-- PRIORITY FILTER -->
+    <select
+      class="filters__select"
+      aria-label="Filter by priority"
+      (change)="filterPriority.set($any($event.target).value)"
+    >
+      <option value="all">All Priority</option>
+      <option value="low">Low</option>
+      <option value="medium">Medium</option>
+      <option value="high">High</option>
+    </select>
+
+    <!-- Divider -->
+    <div class="filters__divider" aria-hidden="true"></div>
+
+    <!---------- VIEW SWITCH --------->
+    <!-- TABLE VIEW BTN -->
+    <button
+      class="action-btn icon-btn"
+      (click)="view.set('table')"
+      title="Table view"
+      [class.active]="view() === 'table'"
+      aria-label="Switch to table view"
+      [attr.aria-pressed]="view() === 'table'"
+      type="button"
+    >
+      <i class="fa-solid fa-table"></i>
+    </button>
+
+    <!-- KANBAN VIEW BTN -->
+    <button
+      class="action-btn icon-btn"
+      (click)="view.set('kanban')"
+      title="Kanban View"
+      [class.active]="view() === 'kanban'"
+      aria-label="Switch to Kanban View"
+      [attr.aria-pressed]="view() === 'kanban'"
+      type="button"
+    >
+      <i class="fa-solid fa-columns"></i>
+    </button>
+
+    <!-- CREATE ISSUE BTN -->
+    <button
+      class="action-btn filters__create"
+      (click)="createIssue()"
+      title="Create Issue"
+      aria-label="Create new issue"
+      type="button"
+    >
+      <i class="fa-solid fa-plus"></i>
+    </button>
+  </div>
+
+  <!-- TABLE VIEW-->
+  @if (view() === 'table') {
+    <app-issue-table
+      [issues]="filteredIssues()"
+      (deleteIssue)="deleteIssue($event)"
+      (editIssue)="editIssue($event)"
+    />
+  }
+
+  <!-- KANBAN VIEW -->
+  @if (view() === 'kanban') {
+    <app-issue-kanban [issues]="filteredIssues()" />
+  }
+
+  <!-- Empty state when no issues match filters -->
+  @if (filteredIssues().length === 0) {
+    <div class="issue-page__empty" role="status" aria-live="polite">
+      <i class="fa-solid fa-inbox" aria-hidden="true"></i>
+      <p>No issues match your current filters.</p>
+    </div>
+  }
+</div>

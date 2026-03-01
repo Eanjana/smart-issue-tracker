@@ -1,0 +1,124 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.summary-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: v.$space-6;
+  margin-bottom: v.$space-8;
+}
+
+.summary-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: v.$space-4;
+  padding: v.$space-6;
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-lg;
+  box-shadow: var(--shadow-card);
+  transition:
+    transform v.$transition-base,
+    box-shadow v.$transition-base;
+  overflow: hidden;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      var(--shadow-card),
+      0 0 0 1px var(--clr-border-default);
+  }
+
+// -- Accent line at very top of every card ---------
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--card-color); // set by the color modifier below
+  }
+  // -- Color Modifiers
+  &--teal {
+    --card-color: var(--clr-teal-500);
+  }
+
+  &--blue {
+    --card-color: #3b82f6;
+  }
+
+  &--orange {
+    --card-color: #ffb84d;
+  }
+
+  &--red {
+    --card-color: #ff5c7a;
+  }
+  &--green {
+    --card-color: #22c55e;
+  }
+
+  //icon
+  &__icon {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    @include m.flex-center;
+    border-radius: v.$radius-lg;
+
+    i {
+      opacity: 1;
+      font-size: 26px;
+      color: var(--card-color);
+    }
+  }
+
+  //text content
+  &__content {
+    @include m.flex-column;
+    gap: v.$space-1;
+    flex: 1;
+  }
+
+  &__label {
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: v.$letter-spacing-caps;
+    color: var(--clr-text-secondary);
+    margin: 0;
+  }
+
+  &__value {
+    font-family: v.$font-display;
+    font-size: v.$font-size-2xl;
+    font-weight: v.$font-weight-extrabold;
+    color: var(--clr-text-primary);
+    margin: 0;
+    line-height: 1;
+  }
+
+  //trend
+  &__trend {
+    display: flex;
+    align-items: center;
+    gap: v.$space-1;
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-semibold;
+    margin-top: v.$space-1;
+
+    i {
+      font-size: 10px;
+    }
+
+    &--up {
+      color: var(--clr-teal-500);
+    }
+
+    &--down {
+      color: #FF5C7A;
+    }
+  }
+}

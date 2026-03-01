@@ -1,0 +1,28 @@
+<div class="sla-metrics">
+  <h2 class="sla-metrics__title">SLA Metrics</h2>
+
+  <div class="sla-metrics__grid">
+    @for (metric of metrics(); track metric.label) {
+      <div class="sla-metric sla-metric--{{ metric.status }}">
+        <!-- header -->
+        <div class="sla-metric__header">
+          <span class="sla-metric__label">{{ metric.label }}</span>
+          <span class="sla-metric__value">{{ metric.value }}</span>
+        </div>
+
+        <!-- target -->
+        @if (metric.target) {
+          <p class="sla-metric__target">{{ metric.target }}</p>
+        }
+
+        <!-- progress bar -->
+        <div class="sla-metric__progress">
+          <div class="sla-metric__progress-fill" [style.width.%]="metric.percentage"></div>
+        </div>
+      </div>
+
+      <!-- percentage label -->
+      <span class="sla-metric__percentage">{{ metric.percentage.toFixed(0) }}%</span>
+    }
+  </div>
+</div>

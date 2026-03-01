@@ -1,0 +1,107 @@
+// ── Color Palette
+
+// Navy scale - background
+$color-navy-950: #060e18; // deepest bg
+$color-navy-900: #0a1628; // main page bg
+$color-navy-700: #112438; // left brand panel gradient start
+$color-navy-600: #1a2e45; // card surfaces, hover states
+
+// Accent - Main color theme
+$color-teal-400: #00e5c8; // Bright highlight
+$color-teal-500: #00bfa6; // Primary button, border focus
+$color-teal-600: #009e88; // button hover
+
+// Text
+$color-text-primary: #1a2433; // Main readable text
+$color-text-secondary: #5a6c7d; // Muted labels, descriptions
+$color-text-muted: #94a3b8; // copyright, disabled hints
+$color-text-disabled: #a0aec0; // input placeholders
+$color-text-on-teal: #060e18; // dark text placed on a teal button
+$color-error: #ff5c7a; // Validation errors
+
+// Surfaces — layered dark backgrounds
+$color-surface-page: #f5f7fa; // root page background
+$color-surface-card: #ffffff; // form card
+$color-surface-input: #f9fafb; // input field background
+$color-surface-hover: #eef2f6; // input/row hover background
+
+// Borders
+$color-border-subtle: rgba(15, 23, 42, 0.06); // card edges
+$color-border-default: rgba(15, 23, 42, 0.12); // input default border
+$color-border-emphasis: rgba(15, 23, 42, 0.18); // input hover border
+$color-border-focus: $color-teal-500; // input focus border
+
+// glow teal - input focus & button shadows
+$color-glow-teal: rgba(0, 191, 166, 0.18);
+$color-glow-teal-soft: rgba(0, 191, 166, 0.04);
+
+// Typography
+
+// 1 - font family
+$font-display: 'Syne', sans-serif; // Bold headings
+$font-body: 'DM Sans', sans-serif; // body
+
+// 2 - font size
+$font-size-xs: 0.75rem; // 12px - labels, copyright, eyebrow
+$font-size-sm: 0.875rem; // 14px - body text, inputs, feature list
+$font-size-base: 1rem; // 16px
+$font-size-lg: 1.25rem; // 20px
+$font-size-xl: 1.5rem; // 24px
+$font-size-2xl: 1.875rem; // 30px - card title "Sign in"
+$font-size-3xl: 3rem; // 48px - brand name "Beinex"
+
+$font-size-footer: 0.6875rem; //footer - copyright
+
+// 3 - font weight
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$font-weight-extrabold: 800;
+
+// 4 - line height
+$line-height-tight: 1.15;
+$line-height-snug: 1.35;
+$line-height-normal: 1.6;
+
+// 5 - letter spacing
+$letter-spacing-tight: -0.02em; // headings
+$letter-spacing-wide: 0.04em; // buttons, footer
+$letter-spacing-caps: 0.11em; // uppercase labels, eyebrow text
+
+// space - [ padding , gap, margin ]
+$space-1: 0.25rem; //  4px
+$space-2: 0.5rem; //  8px
+$space-3: 0.75rem; // 12px
+$space-4: 1rem; // 16px
+$space-5: 1.25rem; // 20px
+$space-6: 1.5rem; // 24px
+$space-8: 2rem; // 32px
+$space-10: 2.5rem; // 40px
+$space-12: 3rem; // 48px
+
+// Border radius
+$radius-sm: 6px;
+$radius-md: 10px; // inputs, buttons
+$radius-lg: 14px; // brand icon ring
+$radius-xl: 20px; // form card
+$radius-pill: 9999px; // accent line, dots
+
+// Shadows
+$shadow-card: 0 8px 24px rgba(15, 23, 42, 0.08);
+$shadow-teal-icon:
+  0 0 28px rgba(0, 191, 166, 0.22),
+  0 0 6px rgba(0, 191, 166, 0.1);
+$shadow-btn: 0 4px 12px rgba(0, 191, 166, 0.25);
+$shadow-btn-hover:  0 6px 18px rgba(0, 191, 166, 0.35);
+$shadow-btn-active: 0 0 14px rgba(0, 191, 166, 0.18);
+$shadow-input-focus: 0 0 0 3px rgba(0, 191, 166, 0.18);
+$shadow-input-error: 0 0 0 3px rgba(255, 92, 122, 0.14);
+
+// Transitions
+$transition-fast: 150ms ease;
+$transition-base: 250ms ease;
+$transition-spring: 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+//Responsiveness - screen sizes - break point [bp]
+$bp-md: 768px;
+$bp-lg: 1024px;

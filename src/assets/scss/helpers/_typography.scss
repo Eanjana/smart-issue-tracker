@@ -1,0 +1,25 @@
+@use 'variables' as v;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+//base body
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+//--text style for body
+body {
+  font-family: v.$font-body;
+  font-weight: v.$font-weight-medium;
+  line-height: v.$line-height-normal;
+  -webkit-font-smoothing: antialiased; // crisper font rendering on Mac/iOS
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}

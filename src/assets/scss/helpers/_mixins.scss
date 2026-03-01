@@ -1,0 +1,155 @@
+@use 'variables' as v;
+
+// content center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// content center + flex direction - column
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+// flex - column only
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// flex - center and left aligned
+@mixin flex-start {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+//Responsiveness
+
+// 1
+@mixin respond-above($bp) {
+  @if $bp == md {
+    @media (min-width: v.$bp-md) {
+      @content;
+    }
+  } @else if $bp == lg {
+    @media (min-width: v.$bp-lg) {
+      @content;
+    }
+  }
+}
+
+// 2 - below the break point
+@mixin respond-below($bp) {
+  @if $bp == md {
+    @media (max-width: #{v.$bp-md - 1}) {
+      @content;
+    }
+  }
+}
+
+//  Creates the signature Beinex "lit from above" card detail
+@mixin accent-line-top {
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, v.$color-teal-500, transparent);
+    border-radius: v.$radius-pill;
+    opacity: 0.9;
+  }
+
+  // Slightly softer glow line at the very top edge
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent 10%,
+      rgba(0, 229, 200, 0.5) 50%,
+      transparent 90%
+    );
+    border-radius: v.$radius-pill;
+  }
+}
+
+// eyebrow — "WELCOME BACK" text
+@mixin overline {
+  font-family: v.$font-body;
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  letter-spacing: v.$letter-spacing-caps;
+  text-transform: uppercase;
+  color: v.$color-teal-400;
+}
+
+// label style — input field labels
+@mixin label-caps {
+  font-family: v.$font-body;
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  letter-spacing: v.$letter-spacing-caps;
+  text-transform: uppercase;
+  color: v.$color-text-secondary;
+  user-select: none;
+  transition: color v.$transition-fast;
+}
+
+//input field style
+@mixin input-base {
+  width: 100%;
+  padding: v.$space-3 v.$space-4;
+  background: var(--clr-surface-input);
+  border: 1.5px solid var(--clr-border-default);
+  border-radius: v.$radius-md;
+  color: var(--clr-text-primary);
+  font-family: v.$font-body;
+  font-size: v.$font-size-sm;
+  line-height: v.$line-height-normal;
+  outline: none;
+  box-sizing: border-box;
+  transition:
+    border-color v.$transition-base,
+    box-shadow v.$transition-base,
+    background v.$transition-fast;
+
+  &::placeholder {
+    font-size: v.$font-size-sm;
+    font-family: v.$font-body;
+    color: var(--clr-text-disabled);
+    opacity: 1;
+  }
+
+  &:hover {
+    border-color: var(--clr-border-emphasis);
+    background: var(--clr-surface-hover);
+  }
+
+  &:focus {
+    border-color: var(--clr-border-focus);
+    box-shadow: var(--shadow-input-focus);
+    background: var(--clr-surface-hover);
+  }
+}
+
+// Only shows when using keyboard navigation (not mouse clicks)
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--clr-teal-400);
+    outline-offset: 3px;
+  }
+}
+
+

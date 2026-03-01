@@ -1,0 +1,76 @@
+// theme toggle button styles
+
+@use '../helpers/variables' as v;
+@use '../helpers/mixins' as m;
+
+.theme-toggle {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 1.5px solid var(--clr-border-default);
+  border-radius: v.$radius-pill;
+  background: var(--clr-surface-card);
+  cursor: pointer;
+  overflow: hidden;
+  @include m.flex-center;
+
+  transition:
+    background v.$transition-base,
+    border-color v.$transition-base,
+    box-shadow v.$transition-base,
+    transform v.$transition-spring;
+
+  &:hover {
+    border-color: var(--clr-border-emphasis);
+    background: var(--clr-surface-hover);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  outline: none;
+  @include m.focus-ring;
+
+  &--fixed {
+    position: absolute;
+    z-index: 10;
+    top: v.$space-6;
+    right: v.$space-6;
+  }
+
+  &__icon {
+    position: absolute;
+    @include m.flex-center;
+
+    transition:
+      opacity v.$transition-base,
+      transform v.$transition-base;
+  }
+
+  &__icon i {
+    font-size: 20px;
+    color: var(--clr-teal-400);
+  }
+
+  &__icon--sun {
+    opacity: 0;
+    transform: rotate(180deg) scale(0.5);
+
+    [data-theme='dark'] & {
+      opacity: 1;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  &__icon--moon {
+    opacity: 1;
+    transform: rotate(0deg) scale(1);
+
+    [data-theme='dark'] & {
+      opacity: 0;
+      transform: rotate(180deg) scale(0.5);
+    }
+  }
+}

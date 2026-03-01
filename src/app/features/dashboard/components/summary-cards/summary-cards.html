@@ -1,0 +1,29 @@
+<div class="summary-cards">
+  @for (card of cards(); track card.label) {
+    <div class="summary-card summary-card--{{ card.color }}">
+      <!-- icon -->
+      <div class="summary-card__icon">
+        <i [class]="card.icon"></i>
+      </div>
+
+      <!-- content -->
+      <div class="summary-card__content">
+        <p class="summary-card__label">{{ card.label }}</p>
+        <h3 class="summary-card__value">{{ card.value }}</h3>
+
+        <!-- trend -->
+        @if (card.trend) {
+          <div class="summary-card__trend summary-card__trend--{{ card.trend.direction }}">
+            <i
+              class="fa-solid"
+              [class.fa-arrow-up]="card.trend.direction === 'up'"
+              [class.fa-arrow-down]="card.trend.direction === 'down'"
+            >
+            </i>
+            <span>{{ card.trend.value }}% this month</span>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

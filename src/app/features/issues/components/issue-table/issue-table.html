@@ -1,0 +1,51 @@
+<div class="issue-table-wrap">
+  <table class="issue-table">
+    <thead class="issue-table__head">
+      <tr>
+        <th class="issue-table__th">Title</th>
+        <th class="issue-table__th">Category</th>
+        <th class="issue-table__th">Priority</th>
+        <th class="issue-table__th">Status</th>
+        <th class="issue-table__th">Assigned To</th>
+        <th class="issue-table__th">Due Date</th>
+        <th class="issue-table__th">Actions</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (issue of issues(); track issue.id) {
+        <tr class="issue-table__row">
+          <td class="issue-table__td" (click)="viewIssue(issue)">{{ issue.title }}</td>  
+          <td class="issue-table__td">{{ issue.category }}</td>
+          <td class="issue-table__td">
+            <span class="issue-badge issue-badge--{{ issue.priority }}">{{ issue.priority }}</span>
+          </td>
+          <td class="issue-table__td">
+            <span class="issue-badge issue-badge--{{ issue.status }}">{{ issue.status }}</span>
+          </td>
+          <td class="issue-table__td">{{ issue.assignedTo }}</td>
+          <td class="issue-table__td">{{ formatDate(issue.dueDate) }}</td>
+          <td class="issue-table__td issue-table__td--actions">
+            <button
+              class="issue-table__action issue-table__action--edit"
+              (click)="onEditClick(issue, $event)"
+              [attr.aria-label]="'Edit ' + issue.title"
+              type="button"
+            >
+              <i class="fa-solid fa-pen" aria-hidden="true"></i>
+            </button>
+            <button
+              class="issue-table__action issue-table__action--delete"
+              (click)="onDeleteClick(issue.id, $event)"
+              [attr.aria-label]="'Delete ' + issue.title"
+              type="button"
+            >
+              <i class="fa-solid fa-trash" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+

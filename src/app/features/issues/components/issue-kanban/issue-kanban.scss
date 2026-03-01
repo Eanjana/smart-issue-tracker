@@ -1,0 +1,149 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.kanban {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: v.$space-5;
+  padding: v.$space-2 0 v.$space-6;
+  align-items: start;   // columns don't stretch to tallest
+
+  // Single column on small screens
+  @include m.respond-below(md) {
+    grid-template-columns: 1fr;
+  }
+
+  // ------- Column ---------------
+  &__column {
+    background: var(--clr-surface-hover);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: v.$radius-lg;
+    padding: v.$space-4;
+    min-height: 320px;
+    animation: bx-fade-up 0.3s ease both;
+
+    // Staggered column entrance
+    &:nth-child(1) { animation-delay: 0.05s; }
+    &:nth-child(2) { animation-delay: 0.10s; }
+    &:nth-child(3) { animation-delay: 0.15s; }
+  }
+
+  // ------- Column Header --------------
+  &__title {
+    font-family: v.$font-body;
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: v.$letter-spacing-caps;
+    color: var(--clr-text-secondary);
+    margin-bottom: v.$space-4;
+    padding-bottom: v.$space-3;
+    border-bottom: 2px solid var(--clr-border-subtle);
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+  }
+
+  // ----- Empty Column Placeholder -----------
+  &__empty {
+    font-size: v.$font-size-sm;
+    color: var(--clr-text-muted);
+    text-align: center;
+    padding: v.$space-8 0;
+    font-style: italic;
+    opacity: 0.7;
+  }
+}
+
+// ----- Kanban Card -------------
+.kanban-card {
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-md;
+  padding: v.$space-4;
+  margin-bottom: v.$space-3;
+  cursor: pointer;
+  transition:
+    transform v.$transition-base,
+    box-shadow v.$transition-base,
+    border-color v.$transition-base;
+
+  // Lift on hover
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+    border-color: var(--clr-border-default);
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  // Card Title
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-bold;
+    color: var(--clr-text-primary);
+    margin-bottom: v.$space-1;
+    // Prevent overflow on long titles
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  // Category label
+  &__category {
+    font-size: v.$font-size-xs;
+    color: var(--clr-text-muted);
+    margin-bottom: v.$space-3;
+    font-weight: v.$font-weight-medium;
+  }
+
+  // Row containing priority badge
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+    margin-bottom: v.$space-2;
+  }
+
+  // Due date text
+  &__due {
+    font-size: v.$font-size-xs;
+    color: var(--clr-text-secondary);
+    margin: 0;
+  }
+}
+
+// ---- Priority Badges------
+// kanban-badge--priority-{low|medium|high}
+.kanban-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px v.$space-3;
+  border-radius: v.$radius-pill;
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  border: 1px solid transparent;
+
+  &--priority-low {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--clr-teal-500);
+    border-color: rgba(0, 191, 166, 0.25);
+  }
+
+  &--priority-medium {
+    background: rgba(255, 184, 77, 0.1);
+    color: #c87d00;
+    border-color: rgba(255, 184, 77, 0.3);
+  }
+
+  &--priority-high {
+    background: rgba(255, 92, 122, 0.1);
+    color: #ff5c7a;
+    border-color: rgba(255, 92, 122, 0.25);
+  }
+}

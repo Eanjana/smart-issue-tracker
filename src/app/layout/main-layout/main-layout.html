@@ -1,0 +1,75 @@
+<div class="layout">
+
+  <!-- Navigation Bar-->
+  <nav class="topnav" role="navigation" aria-label="Main navigation">
+
+    <!-- Brand mark -->
+    <div class="topnav__brand">
+      <span class="topnav__brand-name" aria-label="Beinex">
+        Bein<span>ex</span>
+      </span>
+    </div>
+
+    <!-- Page navigation links -->
+    <div class="topnav__links" role="list">
+      <a
+        class="topnav__link"
+        routerLink="/dashboard"
+        routerLinkActive="topnav__link--active"
+        aria-label="Go to Dashboard"
+        role="listitem"
+      >
+        <i class="fa-solid fa-gauge" aria-hidden="true"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a
+        class="topnav__link"
+        routerLink="/issues"
+        routerLinkActive="topnav__link--active"
+        aria-label="Go to Issues"
+        role="listitem"
+      >
+        <i class="fa-solid fa-layer-group" aria-hidden="true"></i>
+        <span>Issues</span>
+      </a>
+    </div>
+
+    <!-- Right-side actions: theme toggle + logout -->
+    <div class="topnav__actions">
+
+      <!-- Theme toggle -->
+      <button
+        class="theme-toggle theme-toggle--inline"
+        (click)="toggleTheme()"
+        [attr.aria-label]="themeLabel"
+        type="button"
+      >
+        <span class="theme-toggle__icon theme-toggle__icon--sun">
+          <i class="fa-solid fa-sun"></i>
+        </span>
+        <span class="theme-toggle__icon theme-toggle__icon--moon">
+          <i class="fa-solid fa-moon"></i>
+        </span>
+      </button>
+
+      <!-- Logout button -->
+      <button
+        class="topnav__logout"
+        (click)="logout()"
+        aria-label="Log out of Beinex"
+        type="button"
+      >
+        <i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i>
+        <span>Logout</span>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <main class="layout__content" id="main-content" tabindex="-1">
+    <router-outlet></router-outlet>
+  </main>
+
+</div>

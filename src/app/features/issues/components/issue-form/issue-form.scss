@@ -1,0 +1,146 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.issue-form {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: v.$space-8;
+
+  @include m.respond-below(md) {
+    padding: v.$space-4;
+  }
+
+  // --- Page Title -------
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-2xl;
+    font-weight: v.$font-weight-extrabold;
+    letter-spacing: v.$letter-spacing-tight;
+    color: var(--clr-text-primary);
+    margin-bottom: v.$space-8;
+    padding-bottom: v.$space-4;
+    border-bottom: 1px solid var(--clr-border-subtle);
+  }
+
+  //---- Form Card -----------
+  &__form {
+    position: relative;
+    background: var(--clr-surface-card);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: v.$radius-xl;
+    padding: v.$space-8;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+    animation: bx-fade-up 0.35s ease both;
+
+    // Teal accent line across the top of the card
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--clr-teal-600), var(--clr-teal-400));
+    }
+
+    @include m.respond-below(md) {
+      padding: v.$space-5 v.$space-4;
+    }
+  }
+
+  // --- Individual Field ------
+  &__field {
+    @include m.flex-column;
+    gap: v.$space-2;
+    margin-bottom: v.$space-5;
+
+    // Uppercase label
+    label {
+      @include m.label-caps;
+    }
+
+    // Label turns teal when the field has focus
+    &:focus-within label {
+      color: var(--clr-teal-400);
+    }
+
+    input,
+    textarea,
+    select {
+      @include m.input-base;
+    }
+
+    // Text area resizable vertically
+    textarea {
+      resize: vertical;
+      min-height: 96px;
+      line-height: v.$line-height-normal;
+    }
+
+    select {
+      cursor: pointer;
+    }
+
+    // Error message triggered by Angular validation
+    input.ng-touched.ng-invalid,
+    textarea.ng-touched.ng-invalid {
+      border-color: var(--clr-error);
+      box-shadow: var(--shadow-input-error);
+    }
+  }
+
+  // ---- Inline Validation Error ---
+  &__error {
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-medium;
+    color: var(--clr-error);
+    animation: bx-fade-up-sm 0.2s ease both;
+
+    // Warning icon
+    &::before {
+      content: '⚠ ';
+    }
+  }
+
+  // ------- Submit Button ------------
+  &__submit {
+    width: 100%;
+    margin-top: v.$space-4;
+    padding: v.$space-4 v.$space-6;
+    border: none;
+    border-radius: v.$radius-md;
+    background: linear-gradient(135deg, var(--clr-teal-500) 0%, var(--clr-teal-400) 100%);
+    color: var(--clr-text-on-teal);
+    font-family: v.$font-body;
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-bold;
+    letter-spacing: v.$letter-spacing-wide;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition:
+      background v.$transition-base,
+      box-shadow v.$transition-base,
+      transform v.$transition-spring;
+
+    @include m.focus-ring;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, var(--clr-teal-600) 0%, var(--clr-teal-500) 100%);
+      box-shadow: var(--shadow-btn-hover);
+      transform: translateY(-1px);
+    }
+
+    &:active:not(:disabled) {
+      box-shadow: var(--shadow-btn-active);
+      transform: scale(0.98);
+    }
+
+    // Greyed-out when form is invalid
+    &:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}

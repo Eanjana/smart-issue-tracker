@@ -1,0 +1,163 @@
+@use '../../../assets/scss/helpers/variables' as v;
+@use '../../../assets/scss/helpers/mixins' as m;
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--clr-surface-page);
+
+  // Push content below the fixed nav
+  &__content {
+    flex: 1;
+    padding-top: 64px;
+    overflow-y: auto;
+  }
+}
+
+// ----Top Navigation Bar----
+.topnav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 v.$space-6;
+  background: var(--clr-surface-card);
+  border-bottom: 1px solid var(--clr-border-subtle);
+  // Subtle drop shadow
+  box-shadow: 0 1px 16px rgba(0, 0, 0, 0.06);
+
+  @include m.respond-below(md) {
+    padding: 0 v.$space-4;
+  }
+
+  // --- Brand ------
+  &__brand {
+    display: flex;
+    align-items: center;
+    gap: v.$space-3;
+    text-decoration: none;
+    flex-shrink: 0;
+  }
+
+  &__brand-name {
+    font-family: v.$font-display;
+    font-size: v.$font-size-xl;
+    font-weight: v.$font-weight-extrabold;
+    letter-spacing: v.$letter-spacing-tight;
+    color: var(--clr-text-primary);
+
+    // The "ex"
+    span {
+      color: var(--clr-teal-400);
+    }
+
+    // Hide text on very small screens
+    @include m.respond-below(md) {
+      display: none;
+    }
+  }
+
+  // ---- Nav Links [ dashboard & issues ] ------
+  &__links {
+    display: flex;
+    align-items: center;
+    gap: v.$space-1;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+    padding: v.$space-2 v.$space-4;
+    border-radius: v.$radius-md;
+    text-decoration: none;
+    color: var(--clr-text-secondary);
+    font-family: v.$font-body;
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-semibold;
+    transition:
+      color v.$transition-base,
+      background v.$transition-base;
+
+    i {
+      font-size: 15px;
+      transition: color v.$transition-base;
+    }
+
+    &:hover {
+      color: var(--clr-teal-500);
+      background: var(--clr-surface-hover);
+    }
+
+    // Active route gets a teal tint
+    &--active {
+      color: var(--clr-teal-500);
+      background: rgba(0, 191, 166, 0.08);
+
+      i {
+        color: var(--clr-teal-500);
+      }
+    }
+
+    @include m.focus-ring;
+  }
+
+  // -------[ toggle & logout ] --------
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: v.$space-3;
+    flex-shrink: 0;
+  }
+
+  // Logout button — subtle red-on-hover destructive style
+  &__logout {
+    display: flex;
+    align-items: center;
+    gap: v.$space-2;
+    padding: v.$space-2 v.$space-4;
+    border-radius: v.$radius-md;
+    border: 1.5px solid var(--clr-border-default);
+    background: transparent;
+    color: var(--clr-text-secondary);
+    font-family: v.$font-body;
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-semibold;
+    cursor: pointer;
+    transition:
+      color v.$transition-base,
+      background v.$transition-base,
+      border-color v.$transition-base,
+      transform v.$transition-spring;
+
+    i {
+      font-size: 14px;
+    }
+
+    &:hover {
+      color: #ff5c7a;
+      border-color: rgba(255, 92, 122, 0.4);
+      background: rgba(255, 92, 122, 0.06);
+      transform: translateY(-1px);
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    @include m.focus-ring;
+
+    // logout - Hide text label on small screens
+    span {
+      @include m.respond-below(md) {
+        display: none;
+      }
+    }
+  }
+}

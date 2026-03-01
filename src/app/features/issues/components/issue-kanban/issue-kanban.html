@@ -1,0 +1,73 @@
+<div class="kanban">
+  <!-- open -->
+  <div class="kanban__column">
+    <h3 class="kanban__title">Open</h3>
+
+    @if (openIssues().length === 0) {
+      <p class="kanban__empty">No Issues</p>
+    }
+
+    @for (issue of openIssues(); track issue.id) {
+      <div class="kanban-card">
+        <h4 class="kanban-card__title">{{ issue.title }}</h4>
+        <h4 class="kanban-card__category">{{ issue.category }}</h4>
+
+        <div class="kanban-card__meta">
+          <span class="kanban-badge kanban-badge--priority-{{ issue.priority }}">{{
+            issue.priority
+          }}</span>
+        </div>
+
+        <p class="kanban-card__due">Due: {{ formatDate(issue.dueDate) }}</p>
+      </div>
+    }
+  </div>
+
+  <!-- in-progress -->
+  <div class="kanban__column">
+    <h3 class="kanban__title">In Progress</h3>
+
+    @if (inProgressIssues().length === 0) {
+      <p class="kanban__empty">No issues</p>
+    }
+
+    @for (issue of inProgressIssues(); track issue.id) {
+      <div class="kanban-card">
+        <h4 class="kanban-card__title">{{ issue.title }}</h4>
+        <p class="kanban-card__category">{{ issue.category }}</p>
+
+        <div class="kanban-card__meta">
+          <span class="kanban-badge kanban-badge--priority-{{ issue.priority }}">
+            {{ issue.priority }}
+          </span>
+        </div>
+
+        <p class="kanban-card__due">Due: {{ formatDate(issue.dueDate) }}</p>
+      </div>
+    }
+  </div>
+
+  <!-- Resolved -->
+  <div class="kanban__column">
+    <h3 class="kanban__title">Resolved</h3>
+
+    @if (resolvedIssues().length === 0) {
+      <p class="kanban__empty">No issues</p>
+    }
+
+    @for (issue of resolvedIssues(); track issue.id) {
+      <div class="kanban-card">
+        <h4 class="kanban-card__title">{{ issue.title }}</h4>
+        <p class="kanban-card__category">{{ issue.category }}</p>
+
+        <div class="kanban-card__meta">
+          <span class="kanban-badge kanban-badge--priority-{{ issue.priority }}">
+            {{ issue.priority }}
+          </span>
+        </div>
+
+        <p class="kanban-card__due">Due: {{ formatDate(issue.dueDate) }}</p>
+      </div>
+    }
+  </div>
+</div>

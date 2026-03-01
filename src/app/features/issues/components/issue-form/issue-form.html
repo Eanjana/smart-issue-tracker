@@ -1,0 +1,90 @@
+<div class="issue-form">
+  <h2 class="issue-form__title">
+    @if (currentIssue) {
+      Edit Issue
+    } @else {
+      Create Issue
+    }
+  </h2>
+
+  <form class="issue-form__form" [formGroup]="form" (ngSubmit)="submit()">
+    <!-- Title -->
+    <div class="issue-form__field">
+      <label for="title">Title</label>
+      <input type="text" id="title" placeholder="Enter issue title" formControlName="title" />
+
+      @if (form.controls.title.touched && form.controls.title.invalid) {
+        <p class="issue-form__error">Title is required</p>
+      }
+    </div>
+
+    <!-- Description -->
+    <div class="issue-form__field">
+      <label for="description">Description</label>
+      <textarea id="description" placeholder="Describe the issue" formControlName="description"></textarea>
+
+      @if (form.controls.description.touched && form.controls.description.invalid) {
+        <p class="issue-form__error">Description is required</p>
+      }
+    </div>
+
+    <!-- Category -->
+    <div class="issue-form__field">
+      <label for="category">Category</label>
+      <input type="text" id="category" placeholder="Infrastructure / Application" formControlName="category" />
+
+      @if (form.controls.category.touched && form.controls.category.invalid) {
+        <p class="issue-form__error">Category required</p>
+      }
+    </div>
+
+    <!-- Priority -->
+    <div class="issue-form__field">
+      <label for="priority">Priority</label>
+      <select id="priority" formControlName="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+
+    <!-- Status -->
+    <div class="issue-form__field">
+      <label for="status">Status</label>
+      <select id="status" formControlName="status">
+        <option value="open">Open</option>
+        <option value="in-progress">In Progress</option>
+        <option value="resolved">Resolved</option>
+      </select>
+    </div>
+
+    <!-- Assigned -->
+    <div class="issue-form__field">
+      <label for="assignedto">Assigned To</label>
+      <input type="text" id="assignedto" placeholder="Team or person" formControlName="assignedTo" />
+
+      @if (form.controls.assignedTo.touched && form.controls.assignedTo.invalid) {
+        <p class="issue-form__error">Assignment required</p>
+      }
+    </div>
+
+    <!-- Due Date -->
+    <div class="issue-form__field">
+      <label for="duedate">Due Date</label>
+      <input type="date" id="duedate" formControlName="dueDate" />
+
+      @if (form.controls.dueDate.touched && form.controls.dueDate.invalid) {
+        <p class="issue-form__error">Due date required</p>
+      }
+    </div>
+
+    <!-- Submit -->
+    <button class="issue-form__submit" type="submit" [disabled]="form.invalid">
+      @if (currentIssue) {
+        Update Issue
+      } @else {
+        Create Issue
+      }
+    </button>
+  </form>
+</div>

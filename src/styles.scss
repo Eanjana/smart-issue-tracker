@@ -1,1 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+
+// 1 - Helpers
+@use 'assets/scss/helpers/variables';
+@use 'assets/scss/helpers/mixins';
+@use 'assets/scss/helpers/typography';
+@use 'assets/scss/helpers/animations';
+
+// themes - light/dark
+@use 'assets/scss/themes/themes';
+
+//  atoms
+// 1 . theme toggle button styles
+@use 'assets/scss/atoms/theme-toggle';
+@use 'assets/scss/atoms/button';
+
+//4 - Organisms
+@use 'assets/scss/organisms/login';
+@use 'assets/scss/organisms/dashboard';

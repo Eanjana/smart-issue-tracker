@@ -1,0 +1,184 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+// -----------------------------------------------------
+// Scroll wrapper — horizontal scroll on small screens
+// -----------------------------------------------------
+.issue-table-wrap {
+  border-radius: v.$radius-lg;
+  border: 1px solid var(--clr-border-subtle);
+  box-shadow: var(--shadow-card);
+  overflow-x: auto;
+  // Fade in on load
+  animation: bx-fade-up 0.3s ease both;
+}
+
+// -----------------------------------------
+// Table
+// -----------------------------------------
+.issue-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--clr-surface-card);
+  min-width: 720px; // forces scroll before wrapping on small screens
+
+  // -- Head
+  &__head {
+    border-bottom: 2px solid var(--clr-border-subtle);
+  }
+
+  &__th {
+    padding: v.$space-4 v.$space-5;
+    text-align: left;
+    font-family: v.$font-body;
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-semibold;
+    text-transform: uppercase;
+    letter-spacing: v.$letter-spacing-caps;
+    color: var(--clr-text-secondary);
+    white-space: nowrap;
+    background: var(--clr-surface-hover);
+
+    // Teal left border accent on first column only
+    &:first-child {
+      border-left: 3px solid var(--clr-teal-500);
+      padding-left: calc(v.$space-5 - 3px);
+    }
+  }
+
+  // -- Rows
+  &__row {
+    border-bottom: 1px solid var(--clr-border-subtle);
+    transition: background v.$transition-fast;
+
+    // Subtle left border highlight on hover — feels premium
+    border-left: 3px solid transparent;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &:hover {
+      background: var(--clr-surface-hover);
+      border-left-color: var(--clr-teal-500);
+    }
+  }
+
+  // -- Cells
+  &__td {
+    padding: v.$space-4 v.$space-5;
+    font-size: v.$font-size-sm;
+    color: var(--clr-text-primary);
+    vertical-align: middle;
+
+    // Title cell - semibold, slight teal on hover row
+    &:first-child {
+      font-weight: v.$font-weight-semibold;
+      max-width: 240px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    // Actions cell - buttons side by side
+    &--actions {
+      display: flex;
+      align-items: center;
+      gap: v.$space-2;
+    }
+  }
+
+  // -- Action icon buttons
+  &__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: v.$radius-sm;
+    border: 1px solid var(--clr-border-default);
+    background: transparent;
+    font-size: 13px;
+    cursor: pointer;
+    transition:
+      background v.$transition-fast,
+      border-color v.$transition-fast,
+      transform v.$transition-spring;
+
+    @include m.focus-ring;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    &--edit {
+      color: #3b82f6;
+      &:hover {
+        background: rgba(59, 130, 246, 0.1);
+        border-color: #3b82f6;
+      }
+    }
+
+    &--delete {
+      color: #ff5c7a;
+      &:hover {
+        background: rgba(255, 92, 122, 0.1);
+        border-color: #ff5c7a;
+      }
+    }
+  }
+}
+
+// -----------------------------------------
+// Badges — priority and status pills
+// -----------------------------------------
+.issue-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px v.$space-3;
+  border-radius: v.$radius-pill;
+  font-size: v.$font-size-xs;
+  font-weight: v.$font-weight-semibold;
+  text-transform: capitalize;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  border: 1px solid transparent;
+
+  // -- Priority
+  &--low {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--clr-teal-500);
+    border-color: rgba(0, 191, 166, 0.25);
+  }
+
+  &--medium {
+    background: rgba(255, 184, 77, 0.1);
+    color: #c87d00;
+    border-color: rgba(255, 184, 77, 0.3);
+  }
+
+  &--high {
+    background: rgba(255, 92, 122, 0.1);
+    color: #ff5c7a;
+    border-color: rgba(255, 92, 122, 0.25);
+  }
+
+  // -- Status
+  &--open {
+    background: rgba(59, 130, 246, 0.1);
+    color: #3b82f6;
+    border-color: rgba(59, 130, 246, 0.25);
+  }
+
+  &--in-progress {
+    background: rgba(255, 184, 77, 0.1);
+    color: #c87d00;
+    border-color: rgba(255, 184, 77, 0.3);
+  }
+
+  &--resolved {
+    background: rgba(0, 191, 166, 0.1);
+    color: var(--clr-teal-500);
+    border-color: rgba(0, 191, 166, 0.25);
+  }
+}

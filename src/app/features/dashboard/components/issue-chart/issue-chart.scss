@@ -1,0 +1,28 @@
+@use '../../../../../assets/scss/helpers/variables' as v;
+@use '../../../../../assets/scss/helpers/mixins' as m;
+
+.issue-chart {
+  background: var(--clr-surface-card);
+  border: 1px solid var(--clr-border-subtle);
+  border-radius: v.$radius-lg;
+  padding: v.$space-6;
+  box-shadow: var(--shadow-card);
+
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-xl;
+    font-weight: v.$font-weight-bold;
+    color: var(--clr-text-primary);
+    margin: 0 0 v.$space-5 0;
+  }
+
+   &__container {
+    overflow-x: auto;
+    
+    svg {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}

@@ -1,0 +1,39 @@
+@use '../helpers/variables' as v;
+@use '../helpers/mixins' as m;
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: v.$space-2;
+  padding: v.$space-3 v.$space-5;
+  background: var(--clr-surface-card);
+  border: 1.5px solid var(--clr-border-default);
+  border-radius: v.$radius-md;
+  color: var(--clr-text-primary);
+  font-family: v.$font-body;
+  font-size: v.$font-size-sm;
+  font-weight: v.$font-weight-semibold;
+  cursor: pointer;
+  transition:
+    background v.$transition-base,
+    border-color v.$transition-base,
+    transform v.$transition-spring;
+  outline: none;
+
+  i {
+    color: var(--clr-teal-500);
+    font-size: 16px;
+  }
+
+  &:hover {
+    background: var(--clr-surface-hover);
+    border-color: var(--clr-border-emphasis);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+
+  @include m.focus-ring;
+}

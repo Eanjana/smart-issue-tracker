@@ -1,0 +1,363 @@
+@use '../helpers/variables' as v;
+@use '../helpers/mixins' as m;
+
+//brand panel & form - split
+.login {
+  display: flex;
+  height: 100vh;
+  min-height: 600px;
+  background: var(--clr-surface-page);
+  overflow: hidden;
+
+  //------------------------------
+  // left panel - Company & Project
+  //-------------------------------
+
+  &__panel-brand {
+    position: relative;
+    width: 46%;
+    flex-shrink: 0;
+    overflow: hidden;
+    background: linear-gradient(
+      145deg,
+      var(--clr-panel-start, #e6f1f8) 0%,
+      var(--clr-panel-mid, #e3f6f3) 55%,
+      var(--clr-panel-end, #f4f8fb) 100%
+    );
+
+    display: none;
+
+    @include m.respond-above(md) {
+      display: flex;
+      @include m.flex-center;
+    }
+
+    // background radial glow & circles
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 55% 45% at 25% 35%, var(--glow-teal-1) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 50% at 80% 70%, var(--glow-blue-2) 0%, transparent 65%),
+        radial-gradient(ellipse 40% 35% at 60% 20%, var(--glow-teal-3) 0%, transparent 60%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    //grid texture
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--grid-line-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line-color) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 1;
+      // Mask fades the grid near the edges so it doesn't look harsh
+      -webkit-mask-image: radial-gradient(ellipse 75% 75% at center, black 45%, transparent 100%);
+      mask-image: radial-gradient(ellipse 75% 75% at center, black 45%, transparent 100%);
+      pointer-events: none;
+    }
+  }
+
+  // ─── Brand Content
+  &__brand-content {
+    position: relative;
+    z-index: 2;
+    @include m.flex-column-center;
+    text-align: center;
+    padding: v.$space-12;
+    animation: bx-fade-in 0.6s ease 0.1s both;
+  }
+  &__brand-logo {
+    @include m.flex-column-center;
+    gap: v.$space-5;
+    margin-bottom: v.$space-10;
+  }
+
+  //icon - logo
+  &__brand-icon {
+    width: 72px;
+    height: 72px;
+    position: relative;
+    @include m.flex-center;
+  }
+
+  &__brand-icon-ring {
+    position: absolute;
+    inset: 0;
+    border: 1.5px solid rgba(0, 191, 166, 0.35);
+    border-radius: v.$radius-lg;
+    transform: rotate(12deg);
+  }
+
+  //colored icon
+  &__brand-icon-inner {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--clr-teal-600) 0%, var(--clr-teal-400) 100%);
+    border-radius: v.$radius-md;
+    @include m.flex-center;
+    box-shadow: var(--shadow-teal-icon);
+  }
+
+  //brand name
+  &__brand-name {
+    font-family: v.$font-display;
+    font-size: v.$font-size-3xl;
+    font-weight: v.$font-weight-extrabold;
+    letter-spacing: v.$letter-spacing-tight;
+    line-height: v.$line-height-tight;
+    color: var(--clr-text-primary);
+    text-shadow: var(--brand-text-shadow);
+    span {
+      color: var(--clr-teal-400);
+    } // letter 'ex' teal color
+  }
+
+  //paragraph below brand name
+  &__brand-tagline {
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-medium;
+    letter-spacing: v.$letter-spacing-caps;
+    text-transform: uppercase;
+    color: var(--clr-text-secondary);
+    margin-top: v.$space-1;
+  }
+
+  //bullet points - list items
+  &__brand-features {
+    list-style: none;
+    @include m.flex-column;
+    gap: v.$space-4;
+    margin-top: v.$space-8;
+    align-self: stretch;
+    text-align: left;
+  }
+
+  //list item
+  &__brand-feature {
+    @include m.flex-start;
+    gap: v.$space-3;
+    animation: bx-fade-up 0.45s ease both;
+
+    &:nth-child(1) {
+      animation-delay: 0.35s;
+    }
+    &:nth-child(2) {
+      animation-delay: 0.45s;
+    }
+    &:nth-child(3) {
+      animation-delay: 0.55s;
+    }
+  }
+
+  // new bullet point
+  &__feature-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--clr-teal-400);
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px var(--clr-glow-teal);
+  }
+
+  //points - text
+  &__feature-text {
+    font-size: v.$font-size-sm;
+    color: var(--clr-text-secondary);
+    line-height: v.$line-height-snug;
+  }
+
+  //copyright
+  &__brand-copyright {
+    position: absolute;
+    bottom: v.$space-6;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+    font-size: v.$font-size-footer;
+    color: var(--clr-text-muted);
+    letter-spacing: v.$letter-spacing-wide;
+  }
+
+  //------------------------------
+  // right panel - sign in
+  //-------------------------------
+
+  //---form
+  &__panel-form {
+    flex: 1;
+    @include m.flex-column-center;
+    background: var(--clr-surface-page);
+    padding: v.$space-8;
+    position: relative;
+    overflow-y: auto; //scroll [ for short view port ]
+
+    //teal radial gradient behind the form
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 70% 60% at 60% 50%,
+        var(--clr-glow-teal-soft) 0%,
+        transparent 65%
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+  }
+
+  // form card
+  &__card {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 400px;
+    background: var(--clr-surface-card);
+    border: 1px solid var(--clr-border-subtle);
+    border-radius: v.$radius-xl;
+    box-shadow: var(--shadow-card);
+    padding: v.$space-10 v.$space-8;
+    animation: bx-fade-up 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+
+    // glow at the top edge
+    @include m.accent-line-top;
+
+    // form style on small screen
+    @include m.respond-below(md) {
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: v.$space-8 v.$space-4;
+    }
+  }
+
+  // card header
+  &__header {
+    @include m.flex-column;
+    gap: v.$space-2;
+    margin-bottom: v.$space-8;
+  }
+
+  // text - welcome back
+  &__eyebrow {
+    @include m.overline;
+  }
+
+  //texts
+  &__title {
+    font-family: v.$font-display;
+    font-size: v.$font-size-2xl;
+    font-weight: v.$font-weight-extrabold;
+    letter-spacing: v.$letter-spacing-tight;
+    line-height: v.$line-height-tight;
+    color: var(--clr-text-primary);
+    margin: 0;
+  }
+  &__subtitle {
+    font-size: v.$font-size-sm;
+    color: var(--clr-text-secondary);
+    line-height: v.$line-height-normal;
+    margin: 0;
+  }
+
+  //--form fields
+  &__field {
+    @include m.flex-column;
+    gap: v.$space-2;
+    margin-bottom: v.$space-5;
+
+    // label
+    label {
+      @include m.label-caps;
+    }
+
+    //focus - label color change
+    &:focus-within label {
+      color: var(--clr-teal-400);
+    }
+  }
+
+  //input field
+  &__input {
+    @include m.input-base;
+
+    //input field error detect style
+    &.ng-touched.ng-invalid {
+      border-color: var(--clr-error);
+      box-shadow: var(--shadow-input-error);
+    }
+  }
+
+  // validation error
+  &__error {
+    display: flex;
+    align-items: flex-start;
+    gap: v.$space-1;
+    font-size: v.$font-size-xs;
+    font-weight: v.$font-weight-medium;
+    color: var(--clr-error);
+    line-height: v.$line-height-snug;
+    margin-top: v.$space-1;
+    animation: bx-fade-up-sm 0.2s ease both;
+
+    // Warning icon — injected via CSS, no extra HTML needed
+    &::before {
+      content: '⚠';
+      font-size: 0.68rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+  }
+
+  //submit button
+  &__button {
+    width: 100%;
+    margin-top: v.$space-2;
+    padding: v.$space-4 v.$space-6;
+    border: none;
+    border-radius: v.$radius-md;
+    background: linear-gradient(135deg, var(--clr-teal-500) 0%, var(--clr-teal-400) 100%);
+    color: var(--clr-text-on-teal);
+    font-family: v.$font-body;
+    font-size: v.$font-size-sm;
+    font-weight: v.$font-weight-bold;
+    letter-spacing: v.$letter-spacing-wide;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+
+    transition:
+      background v.$transition-base,
+      box-shadow v.$transition-base,
+      transform v.$transition-spring;
+
+    @include m.focus-ring;
+
+    &:hover {
+      background: linear-gradient(135deg, var(--clr-teal-600) 0%, var(--clr-teal-500) 100%);
+      box-shadow: var(--shadow-btn-hover);
+      transform: translateY(-1px); // lifts up
+    }
+
+    &:active {
+      box-shadow: var(--shadow-btn-active);
+      transform: translateY(0) scale(0.98);
+    }
+  }
+
+  //footer
+  &__footer {
+    @include m.flex-center;
+    margin-top: v.$space-6;
+    padding-top: v.$space-5;
+    border-top: 1px solid var(--clr-border-subtle);
+    font-size: v.$font-size-footer;
+    color: var(--clr-text-muted);
+    letter-spacing: v.$letter-spacing-wide;
+  }
+}

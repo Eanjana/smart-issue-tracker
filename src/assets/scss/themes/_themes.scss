@@ -1,0 +1,128 @@
+// light and dark theme for the app
+
+@use '../helpers/variables' as *;
+
+// -----------------------------------
+// ☀️ Light Theme
+// -----------------------------------
+:root,
+[data-theme='light'] {
+  //surfaces
+  --clr-surface-page: #{$color-surface-page};
+  --clr-surface-card: #{$color-surface-card};
+  --clr-surface-input: #{$color-surface-input};
+  --clr-surface-hover: #{$color-surface-hover};
+
+  // Background color - left side
+  --clr-panel-start: #e6f1f8;
+  --clr-panel-mid: #e3f6f3;
+  --clr-panel-end: #f4f8fb;
+
+  //text
+  --clr-text-primary: #{$color-text-primary};
+  --clr-text-secondary: #{$color-text-secondary};
+  --clr-text-muted: #{$color-text-muted};
+  --clr-text-disabled: #{$color-text-disabled};
+  --clr-text-on-teal: #{$color-text-on-teal};
+
+  //Accent - main color theme
+  --clr-teal-400: #{$color-teal-400};
+  --clr-teal-500: #{$color-teal-500};
+  --clr-teal-600: #{$color-teal-600};
+
+  //error
+  --clr-error: #{$color-error};
+
+  //borders
+  --clr-border-subtle: #{$color-border-subtle};
+  --clr-border-default: #{$color-border-default};
+  --clr-border-emphasis: #{$color-border-emphasis};
+  --clr-border-focus: #{$color-border-focus};
+
+  //glow teal - teal radial gradient behind the form & input focus/button shadows
+  --clr-glow-teal: #{$color-glow-teal};
+  --clr-glow-teal-soft: #{$color-glow-teal-soft};
+
+  //shadows
+  --shadow-card: #{$shadow-card};
+  --shadow-teal-icon: #{$shadow-teal-icon};
+  --shadow-btn: #{$shadow-btn};
+  --shadow-btn-hover: #{$shadow-btn-hover};
+  --shadow-btn-active: #{$shadow-btn-active};
+  --shadow-input-focus: #{$shadow-input-focus};
+  --shadow-input-error: #{$shadow-input-error};
+
+  //grid
+  --grid-line-color: rgba(15, 23, 42, 0.06);
+
+  //background radial glow & circles - left panel
+  --glow-teal-1: rgba(0, 191, 166, 0.12);
+  --glow-blue-2: rgba(0, 100, 160, 0.15);
+  --glow-teal-3: rgba(0, 191, 166, 0.06);
+
+  // brand name shadow [ left panel ]
+
+  --brand-text-shadow: 0 10px 10px rgba(0, 0, 0, 0.2);
+}
+
+// -----------------------------------
+//  🌙 Dark Theme
+// -----------------------------------
+
+[data-theme='dark'] {
+  //surfaces
+  --clr-surface-page: #{$color-navy-900};
+  --clr-surface-card: #{$color-navy-600};
+  --clr-surface-input: #{$color-navy-950};
+  --clr-surface-hover: #1a2b3c;
+
+  // Background color - left side
+  --clr-panel-start: #{$color-navy-700};
+  --clr-panel-mid: #0c2240;
+  --clr-panel-end: #{$color-navy-950};
+
+  //text
+  --clr-text-primary: #edf2f7;
+  --clr-text-secondary: #8fa3b1;
+  --clr-text-muted: #4a637a;
+  --clr-text-disabled: #3d5570;
+  --clr-text-on-teal: #{$color-text-on-teal};
+
+  //Accent - main color theme
+  --clr-teal-400: #{$color-teal-400};
+  --clr-teal-500: #{$color-teal-500};
+  --clr-teal-600: #{$color-teal-600};
+
+  //error
+  --clr-error: #{$color-error};
+
+  //borders
+  --clr-border-subtle: rgba(255, 255, 255, 0.05);
+  --clr-border-default: rgba(255, 255, 255, 0.09);
+  --clr-border-emphasis: rgba(255, 255, 255, 0.16);
+  --clr-border-focus: #{$color-border-focus};
+
+  //glow teal - teal radial gradient behind the form & input focus/button shadows
+  --clr-glow-teal: #{$color-glow-teal};
+  --clr-glow-teal-soft: #{$color-glow-teal-soft};
+
+  //shadows
+  --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --shadow-teal-icon: #{$shadow-teal-icon};
+  --shadow-btn: 0 4px 18px rgba(0, 191, 166, 0.3);
+  --shadow-btn-hover: 0 6px 24px rgba(0, 191, 166, 0.45);
+  --shadow-btn-active: #{$shadow-btn-active};
+  --shadow-input-focus: #{$shadow-input-focus};
+  --shadow-input-error: #{$shadow-input-error};
+
+  //grid
+  --grid-line-color: rgba(255, 255, 255, 0.028);
+
+  //background radial glow & circles - left panel
+  --glow-teal-1: rgba(0, 191, 166, 0.12);
+  --glow-blue-2: rgba(0, 100, 160, 0.15);
+  --glow-teal-3: rgba(0, 191, 166, 0.06);
+
+  // Brand shadow
+  --brand-text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
