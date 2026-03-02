@@ -8,7 +8,8 @@
       class="filters__search"
       placeholder="Search issue..."
       aria-label="Search issues by title or category"
-      (input)="search.set($any($event.target).value)"
+      [ngModel]="search()"
+      (ngModelChange)="search.set($event)"
     />
 
     <!-----STATUS FILTER ----------->
@@ -16,7 +17,8 @@
     <select
       class="filters__select"
       aria-label="Filter by status"
-      (change)="filterStatus.set($any($event.target).value)"
+      [ngModel]="filterStatus()"
+      (ngModelChange)="filterStatus.set($event)"
     >
       <option value="all">All Status</option>
       <option value="open">Open</option>
@@ -27,7 +29,8 @@
     <select
       class="filters__select"
       aria-label="Filter by priority"
-      (change)="filterPriority.set($any($event.target).value)"
+      [ngModel]="filterPriority()"
+      (ngModelChange)="filterPriority.set($event)"
     >
       <option value="all">All Priority</option>
       <option value="low">Low</option>

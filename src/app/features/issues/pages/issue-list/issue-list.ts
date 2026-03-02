@@ -5,6 +5,7 @@ import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { IssueTable } from '../../components/issue-table/issue-table';
 import { IssueKanban } from '../../components/issue-kanban/issue-kanban';
+import { FormsModule } from '@angular/forms';
 
 /**
  * @description  Issue Management list page. Supports table and
@@ -16,7 +17,7 @@ import { IssueKanban } from '../../components/issue-kanban/issue-kanban';
 
 @Component({
   selector: 'app-issue-list',
-  imports: [CommonModule, RouterModule, IssueTable, IssueKanban],
+  imports: [CommonModule, RouterModule, IssueTable, IssueKanban, FormsModule],
   templateUrl: './issue-list.html',
   styleUrl: './issue-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -27,17 +28,17 @@ export class IssueList {
 
   issues = this.issueService.issues;
 
-  //search filter
+  //search filter signal  -bound via [ngModel] / (ngModelChange) in template
   search = signal('');
 
-  //filters
+  //filter signals same pattern
   filterStatus = signal<'all' | 'open' | 'in-progress' | 'resolved'>('all');
   filterPriority = signal<'all' | 'low' | 'medium' | 'high'>('all');
 
   //view mode
   view = signal<'table' | 'kanban'>('table');
 
-  //filtered issues
+  //Computed filtered list — reacts to all three filter signals
   filteredIssues = computed<IssueInterface[]>(() => {
     // read signal once
     const issues = this.issues();
