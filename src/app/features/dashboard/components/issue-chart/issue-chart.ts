@@ -29,9 +29,9 @@ export class IssueChart {
   config = input.required<ChartConfig>();
 
   // values in chartConfig - changes according to config input
-  title = computed(() => this.config().title);
-  chartType = computed(() => this.config().type);
-  data = computed(() => this.config().data);
+  title = computed(() => this.config()?.title ?? '');
+  chartType = computed(() => this.config()?.type ?? 'bar');
+  data = computed(() => this.config()?.data ?? []);
 
   //access svg element from template
   private svgElement = viewChild<ElementRef<SVGSVGElement>>('chartSvg');
@@ -47,10 +47,10 @@ export class IssueChart {
       const svg = this.svgElement();
       const type = this.chartType();
 
-      if (chartData && svg) {
-        if (type === 'bar') {
-          this.drawBarChart(chartData, svg.nativeElement);
-        }
+      if (!svg || chartData.length === 0) return;
+
+      if (type === 'bar') {
+        this.drawBarChart(chartData, svg.nativeElement);
       }
     });
   }

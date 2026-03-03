@@ -64,7 +64,8 @@
       "status": "in-progress",
       "assignedTo": "DevOps Team",
       "createdAt": "2026-03-01T16:39:20.480Z",
-      "dueDate": "2026-03-24T00:00:00.000Z"
+      "dueDate": "2026-03-24T00:00:00.000Z",
+      "resolvedAt": "2026-03-03T03:52:06.443Z"
     }
   ]
 }
