@@ -144,7 +144,7 @@ export class IssueChart {
         .attr('x2', chartWidth)
         .attr('y1', y(tick))
         .attr('y2', y(tick))
-        .attr('stroke', 'var(--clr-border-subtle)')
+        .attr('stroke', '#d2cccc')
         .attr('stroke-dasharray', '2,2');
     });
   }

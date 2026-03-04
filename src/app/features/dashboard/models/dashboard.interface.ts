@@ -27,10 +27,11 @@ export interface SLAMetric {
 
 export interface ChartDataPoint {
     label: string;  // eg. "Jan", "feb", "Critical" etc.
-    value: number;  // eg. count or metric value
+    value: number;  // eg. count values
     color?: string;  // optional bar color for charts
 }
 
+// full chart config
 export interface ChartConfig {
   title: string;
   type: 'bar' | 'line' | 'pie';
@@ -39,7 +40,7 @@ export interface ChartConfig {
 }
 
 
-// (used by dashboard service + worker)
+// (used by dashboard service + worker) // only one postMessage() call needed
 // ------------ Web Worker Result Type ------------------
 export interface DashboardAnalyticsResult {
   summaryCards: SummaryCardData[];

@@ -15,7 +15,7 @@
     <tbody>
       @for (issue of issues(); track issue.id) {
         <tr class="issue-table__row">
-          <td class="issue-table__td" (click)="viewIssue(issue)">{{ issue.title }}</td>  
+          <td class="issue-table__td issue-table__td--detail" (click)="viewIssue(issue)">{{ issue.title }}</td>  
           <td class="issue-table__td">{{ issue.category }}</td>
           <td class="issue-table__td">
             <span class="issue-badge issue-badge--{{ issue.priority }}">{{ issue.priority }}</span>

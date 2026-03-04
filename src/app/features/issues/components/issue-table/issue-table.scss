@@ -71,6 +71,10 @@
     color: var(--clr-text-primary);
     vertical-align: middle;
 
+    &--detail {
+      cursor: pointer;
+    }
+
     // Title cell - semibold, slight teal on hover row
     &:first-child {
       font-weight: v.$font-weight-semibold;

@@ -65,12 +65,12 @@ addEventListener('message', ({ data }) => {
     const dueDate = new Date(issue.dueDate).getTime();
     const resolvedAt = issue.resolvedAt ? new Date(issue.resolvedAt).getTime() : null;
 
-    //status
+    //status - will reflect the count in summary cards
     if (status === 'open') open++;
     if (status === 'resolved') resolved++;
     if (status === 'in-progress') onTrack++;
 
-    statusMap[status]++;
+    statusMap[status]++;  //same status count applies to status chart
 
     //priority
     if (priority === 'high') highPriority++;
@@ -79,21 +79,21 @@ addEventListener('message', ({ data }) => {
     //overdue
     if (dueDate < now && status !== 'resolved') overdue++;
 
-    //delayed
+    //delayed - for SLA
     if (status === 'open' && dueDate < now) delayed++;
 
-    //SLA resolution
+    //SLA resolution time
     if (status === 'resolved' && resolvedAt) {
       resolutionSum += (resolvedAt - createdAt) / 3600000;
       resolvedCount++;
     }
 
-    //Month grouping
+    //Month chart - to extract the month part from the dat ['jan'].
     const month = new Date(createdAt).toLocaleString('default', {
       month: 'short',
     });
 
-    months[month] = (months[month] || 0) + 1;
+    months[month] = (months[month] || 0) + 1; // total issues count per month
   }
 
   // ------------------------------
@@ -223,6 +223,7 @@ addEventListener('message', ({ data }) => {
   const issuesByMonth: ChartConfig = {
     title: 'Issues by Month',
     type: 'bar',
+    // Convert the months object like { Jan: 5, Feb: 3 } into chart data array
     data: Object.entries(months).map(([label, value]) => ({
       label,
       value,

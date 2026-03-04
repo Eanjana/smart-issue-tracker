@@ -30,6 +30,8 @@ export class IssueService {
     this.loadIssues();
   }
 
+  // --------CRUD-----------
+  
   // -------------------------
   // Load issues from API
   // -------------------------
@@ -47,8 +49,6 @@ export class IssueService {
         this._issues.set(parsed);
       });
   }
-
-  //------CRUD --------
 
   // -------------------------
   // Create Issue

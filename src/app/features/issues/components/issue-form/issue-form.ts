@@ -63,7 +63,7 @@ export class IssueForm {
     }),
   });
 
-  //to prefill form
+  //to prefill form - edit form - checking if same id exists
   constructor() {
     const id = this.route.snapshot.paramMap.get('id');
 

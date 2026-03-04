@@ -16,11 +16,11 @@
       "title": "Server downtime",
       "description": "Production server not responding",
       "category": "Infrastructure",
-      "priority": "high",
+      "priority": "medium",
       "status": "open",
       "assignedTo": "Devops Team",
       "createdAt": "2026-03-01T07:22:39.143Z",
-      "dueDate": "2026-03-18T00:00:00.000Z"
+      "dueDate": "2026-03-02T00:00:00.000Z"
     },
     {
       "id": 1772382804445,
@@ -61,7 +61,7 @@
       "description": "Production server disk usage has reached 85%. Old log files need to be archived and storage needs to be expanded.",
       "category": "Infrastructure",
       "priority": "medium",
-      "status": "in-progress",
+      "status": "resolved",
       "assignedTo": "DevOps Team",
       "createdAt": "2026-03-01T16:39:20.480Z",
       "dueDate": "2026-03-24T00:00:00.000Z",
